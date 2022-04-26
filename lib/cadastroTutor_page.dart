@@ -19,61 +19,67 @@ class FormList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return SingleChildScrollView(
-      child: SizedBox(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            children: [
-              CustomSpacing(height: 20,),
-              CustomTextField(label: 'Nome Completo', icon: Icons.person),
-              CustomSpacing(),
-              CustomTextField(label: 'Email', icon: Icons.mail),
-              CustomSpacing(),
-              CustomTextField(label: 'Celular', icon: Icons.phone),
-              CustomSpacing(),
-              CustomTextField(
-                  label: 'Data de nascimento', icon: Icons.calendar_month),
-              CustomSpacing(),
-              CustomTextField(label: 'CEP', icon: Icons.house),
-              CustomSpacing(),
-              CustomTextField(label: 'Senha', icon: Icons.vpn_key, obscureText: true,),
-              CustomSpacing(),
-              CustomTextField(label: 'Confirmar Senha', icon: Icons.vpn_key, obscureText: true,),
-              CustomSpacing(),
-              SizedBox(
-                width: double.infinity,
-                height: 50.0,
-                child: ElevatedButton.icon(
-                  icon: Icon(Icons.save),
-                  onPressed: () {
-                    Navigator.of(context).pushReplacementNamed('/');
-                  },
-                  label: Text('Cadastrar'),
-                  style: ElevatedButton.styleFrom(
-                    primary: Color.fromARGB(255, 246, 146, 30),
-                    shape: StadiumBorder(),
+    return Form(
+      child: SingleChildScrollView(
+        child: SizedBox(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              children: [
+                CustomSpacing(height: 20,),
+                CustomTextField(label: 'Nome Completo', icon: Icons.person),
+                CustomSpacing(),
+                CustomTextField(label: 'Email', icon: Icons.mail),
+                CustomSpacing(),
+                CustomTextField(label: 'Celular', icon: Icons.phone),
+                CustomSpacing(),
+                CustomTextField(
+                    label: 'Data de nascimento', icon: Icons.calendar_month),
+                CustomSpacing(),
+                CustomTextField(label: 'CEP', icon: Icons.house),
+                CustomSpacing(),
+                CustomTextField(label: 'Senha', icon: Icons.vpn_key, obscureText: true,),
+                CustomSpacing(),
+                CustomTextField(label: 'Confirmar Senha', icon: Icons.vpn_key, obscureText: true,),
+                CustomSpacing(),
+                Builder(builder: (context){
+                  return SizedBox(
+                  width: double.infinity,
+                  height: 50.0,
+                  child: ElevatedButton.icon(
+                    icon: Icon(Icons.save),
+                    onPressed: () {
+                      print(Form.of(context));
+                      Form.of(context)?.validate();
+                      
+                    },
+                    label: Text('Cadastrar'),
+                    style: ElevatedButton.styleFrom(
+                      primary: Color.fromARGB(255, 246, 146, 30),
+                      shape: StadiumBorder(),
+                    ),
+                  ),
+                );
+                }),                
+                CustomSpacing(),
+                SizedBox(
+                  width: double.infinity,
+                  height: 50.0,
+                  child: ElevatedButton.icon(
+                    onPressed: () {
+                      Navigator.of(context).pushReplacementNamed('/');
+                    },
+                    icon: Icon(Icons.logout),
+                    label: Text('Voltar'),
+                    style: ElevatedButton.styleFrom(
+                      primary: Color.fromARGB(255, 246, 146, 30),
+                      shape: StadiumBorder(),
+                    ),
                   ),
                 ),
-              ),
-              CustomSpacing(),
-              SizedBox(
-                width: double.infinity,
-                height: 50.0,
-                child: ElevatedButton.icon(
-                  onPressed: () {
-                    Navigator.of(context).pushReplacementNamed('/');
-                  },
-                  icon: Icon(Icons.logout),
-                  label: Text('Voltar'),
-                  style: ElevatedButton.styleFrom(
-                    primary: Color.fromARGB(255, 246, 146, 30),
-                    shape: StadiumBorder(),
-                  ),
-                ),
-              ),
-              CustomSpacing(height: 20,),
-            ],
+                CustomSpacing(height: 20,),
+              ],
+            ),
           ),
         ),
       ),
@@ -91,7 +97,12 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      validator: (text){
+        if(text == null || text.isEmpty){
+          return 'Este campo precisa ser preenchido';
+        }
+      },
       obscureText: obscureText,
       decoration: InputDecoration(
         labelText: label,
