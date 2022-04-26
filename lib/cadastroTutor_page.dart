@@ -15,6 +15,7 @@ class CadastroTutorPage extends StatelessWidget {
 
 class FormList extends StatelessWidget {
   final controller = TextEditingController();
+   bool obscuredTextPassword = false;
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +39,17 @@ class FormList extends StatelessWidget {
                 CustomSpacing(),
                 CustomTextField(label: 'CEP', icon: Icons.house),
                 CustomSpacing(),
-                CustomTextField(label: 'Senha', icon: Icons.vpn_key, obscureText: true,),
+                CustomTextField(label: 'Senha', icon: Icons.vpn_key, obscureText: true, suffix: IconButton(onPressed: (){
+                  setState((){
+                    obscuredTextPassword = !obscuredTextPassword;
+                  });
+                }, icon: Icon(obscuredTextPassword ? Icons.visibility_off : Icons.visibility))),
                 CustomSpacing(),
-                CustomTextField(label: 'Confirmar Senha', icon: Icons.vpn_key, obscureText: true,),
+                CustomTextField(label: 'Confirmar Senha', icon: Icons.vpn_key, obscureText: true, suffix: IconButton(onPressed: (){
+                  setState((){
+                    obscuredTextPassword = !obscuredTextPassword;
+                  });
+                }, icon: Icon(obscuredTextPassword ? Icons.visibility_off : Icons.visibility))),
                 CustomSpacing(),
                 Builder(builder: (context){
                   return SizedBox(
@@ -50,7 +59,9 @@ class FormList extends StatelessWidget {
                     icon: Icon(Icons.save),
                     onPressed: () {
                       print(Form.of(context));
-                      Form.of(context)?.validate();
+                      if(Form.of(context)?.validate() == true){
+                        Navigator.of(context).pushReplacementNamed('/');
+                      }
                       
                     },
                     label: Text('Cadastrar'),
@@ -85,14 +96,19 @@ class FormList extends StatelessWidget {
       ),
     );
   }
+
+  void setState(Null Function() param0) {}
 }
 
 class CustomTextField extends StatelessWidget {
   final String label;
   final IconData? icon;
   final bool obscureText;
+  final Widget? suffix ;
+  
 
-  const CustomTextField({Key? key, required this.label, this.icon, this.obscureText = false})
+
+  const CustomTextField({Key? key, required this.label, this.icon, this.obscureText = false, this.suffix})
       : super(key: key);
 
   @override
@@ -122,6 +138,7 @@ class CustomTextField extends StatelessWidget {
               BorderSide(color: Color.fromARGB(255, 246, 146, 30), width: 2.0),
         ),
         prefixIcon: icon == null ? null : Icon(icon),
+        suffixIcon: suffix,
       ),
     );
   }
