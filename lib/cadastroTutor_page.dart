@@ -6,7 +6,7 @@ class CadastroTutorPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.amberAccent,
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(title: Text('Cadastro do Tutor')),
       body: FormList(),
     );
@@ -39,13 +39,13 @@ class FormList extends StatelessWidget {
                 CustomSpacing(),
                 CustomTextField(label: 'CEP', icon: Icons.house),
                 CustomSpacing(),
-                CustomTextField(label: 'Senha', icon: Icons.vpn_key, obscureText: true, suffix: IconButton(onPressed: (){
+                CustomTextField(label: 'Senha', icon: Icons.vpn_key, obscureText: obscuredTextPassword, suffix: IconButton(onPressed: (){
                   setState((){
                     obscuredTextPassword = !obscuredTextPassword;
                   });
                 }, icon: Icon(obscuredTextPassword ? Icons.visibility_off : Icons.visibility))),
                 CustomSpacing(),
-                CustomTextField(label: 'Confirmar Senha', icon: Icons.vpn_key, obscureText: true, suffix: IconButton(onPressed: (){
+                CustomTextField(label: 'Confirmar Senha', icon: Icons.vpn_key, obscureText: obscuredTextPassword, suffix: IconButton(onPressed: (){
                   setState((){
                     obscuredTextPassword = !obscuredTextPassword;
                   });
@@ -119,6 +119,7 @@ class CustomTextField extends StatelessWidget {
           return 'Este campo precisa ser preenchido';
         }
       },
+      // onChanged: onChanged,
       obscureText: obscureText,
       decoration: InputDecoration(
         labelText: label,

@@ -4,18 +4,22 @@ class PetsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.amberAccent,
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
       body: ListaTransferencia(),
       appBar: AppBar(
         title: Text('Pets Cadastrados'),
         actions: [
-        IconButton(onPressed: (){
-          Navigator.of(context).pushReplacementNamed('/');
-        }, icon: Icon(Icons.logout))
-
-        ],),
+          IconButton(
+              onPressed: () {
+                Navigator.of(context).pushReplacementNamed('/');
+              },
+              icon: Icon(Icons.logout))
+        ],
+      ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).pushReplacementNamed('/cadastroPet');
+        },
         child: Icon(Icons.add),
       ),
     );
@@ -75,12 +79,11 @@ class ItemTransferencia extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 0,
-      color: Colors.transparent,  
+      color: Colors.transparent,
       child: ListTile(
         leading: Icon(Icons.pets),
         title: Text(_transferencia.nome),
         subtitle: Text(_transferencia.raca),
-        
       ),
     );
   }

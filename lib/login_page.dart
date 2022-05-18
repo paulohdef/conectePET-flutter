@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:conectepet/home_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -14,7 +13,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.amberAccent,
+        backgroundColor: Color.fromARGB(255, 255, 255, 255),
         body: SingleChildScrollView(
           child: SizedBox(
             child: Padding(
@@ -22,7 +21,6 @@ class _LoginPageState extends State<LoginPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("ConectePET", style: TextStyle(fontSize: 25.0)),
                   Container(
                       width: 200,
                       height: 180,

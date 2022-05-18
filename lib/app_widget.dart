@@ -1,7 +1,7 @@
+import 'package:conectepet/cadastoPet_page.dart';
 import 'package:flutter/material.dart';
 import 'package:conectepet/app_controller.dart';
 
-import 'home_page.dart';
 import 'login_page.dart';
 import 'pets_page.dart';
 import 'cadastroTutor_page.dart';
@@ -38,9 +38,9 @@ class AppWidget extends StatelessWidget {
             initialRoute: '/',
             routes: {
               '/': (context) => LoginPage(),
-              '/home': (context) => HomePage(),
               '/pets': (context) => PetsPage(),
-              '/cadastro': (context) => CadastroTutorPage()
+              '/cadastro': (context) => CadastroTutorPage(),
+              '/cadastroPet': (context) => CadastroPetPage(),
             },
           );
         });

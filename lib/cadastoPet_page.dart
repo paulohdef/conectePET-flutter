@@ -6,7 +6,7 @@ class CadastroPetPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.amberAccent,
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(title: Text('Cadastro do Pet')),
       body: FormList(),
     );
